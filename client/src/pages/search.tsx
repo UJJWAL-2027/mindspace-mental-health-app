@@ -19,8 +19,8 @@ export default function Search() {
     queryFn: async () => {
       const searchParams = new URLSearchParams({
         q: query,
-        ...(mood && { mood }),
-        ...(dateRange && { dateRange }),
+        ...(mood && mood !== "any" && { mood }),
+        ...(dateRange && dateRange !== "all" && { dateRange }),
         ...(tags && { tags }),
       });
       const response = await fetch(`/api/search-entries?${searchParams.toString()}`);
@@ -90,7 +90,7 @@ export default function Search() {
                     <SelectValue placeholder="All Time" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Time</SelectItem>
+                    <SelectItem value="all">All Time</SelectItem>
                     {dateRanges.map((range) => (
                       <SelectItem key={range.value} value={range.value}>
                         {range.label}
@@ -106,7 +106,7 @@ export default function Search() {
                     <SelectValue placeholder="Any Mood" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Any Mood</SelectItem>
+                    <SelectItem value="any">Any Mood</SelectItem>
                     {moods.map((moodOption) => (
                       <SelectItem key={moodOption.value} value={moodOption.value}>
                         {moodOption.label}

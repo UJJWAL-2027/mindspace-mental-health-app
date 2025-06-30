@@ -2,7 +2,7 @@
 
 ## Overview
 
-MindSpace is a full-stack mental wellness application that provides journaling, mood tracking, and AI-powered chat functionality. The application is built with a React frontend using TypeScript and a Node.js/Express backend, with PostgreSQL as the database and Drizzle ORM for data management.
+MindSpace is a simple mental wellness application that provides journaling, mood tracking, and AI-powered chat functionality. The application is built with a React frontend using TypeScript and a Node.js/Express backend, with in-memory storage for simplicity (migrating to MongoDB). Focus is on keeping it beginner-friendly and simple.
 
 ## System Architecture
 
@@ -17,10 +17,9 @@ MindSpace is a full-stack mental wellness application that provides journaling, 
 ### Backend Architecture
 - **Runtime**: Node.js with Express.js
 - **Language**: TypeScript with ES modules
-- **Database**: PostgreSQL with Drizzle ORM
-- **Database Provider**: Neon Database (serverless PostgreSQL)
-- **External APIs**: OpenAI for AI chat functionality
-- **Session Management**: Express sessions with PostgreSQL store
+- **Database**: In-memory storage (simple for beginners, MongoDB setup in progress)
+- **AI Chat**: Rule-based responses (simple, no external API needed)
+- **Session Management**: Basic in-memory sessions
 
 ### Design System
 - **Component Library**: Custom implementation using Radix UI primitives
