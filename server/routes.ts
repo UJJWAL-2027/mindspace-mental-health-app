@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertJournalEntrySchema, insertMoodEntrySchema, insertChatMessageSchema } from "@shared/schema";
+import { insertJournalEntrySchema, insertMoodEntrySchema, insertChatMessageSchema, updateProfileSchema } from "@shared/schema";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -10,6 +10,34 @@ const openai = new OpenAI({
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const DEFAULT_USER_ID = 1; // Using default user for simplicity
+
+  // User profile routes
+  app.get("/api/profile", async (req, res) => {
+    try {
+      const user = await storage.getUser(DEFAULT_USER_ID);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch profile" });
+    }
+  });
+
+  app.put("/api/profile", async (req, res) => {
+    try {
+      const validatedData = updateProfileSchema.parse(req.body);
+      const updatedUser = await storage.updateUserProfile(DEFAULT_USER_ID, validatedData);
+      
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      
+      res.json(updatedUser);
+    } catch (error) {
+      res.status(400).json({ error: "Invalid profile data" });
+    }
+  });
 
   // Journal entries routes
   app.get("/api/journal-entries", async (req, res) => {

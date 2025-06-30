@@ -9,6 +9,7 @@ import Journal from "@/pages/journal";
 import Chat from "@/pages/chat";
 import Mood from "@/pages/mood";
 import Search from "@/pages/search";
+import Profile from "@/pages/profile";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/chat" component={Chat} />
         <Route path="/mood" component={Mood} />
         <Route path="/search" component={Search} />
+        <Route path="/profile" component={Profile} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

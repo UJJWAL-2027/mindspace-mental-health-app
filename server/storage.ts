@@ -5,6 +5,7 @@ import {
   chatMessages,
   type User, 
   type InsertUser,
+  type UpdateProfile,
   type JournalEntry,
   type InsertJournalEntry,
   type MoodEntry,
@@ -18,6 +19,7 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  updateUserProfile(id: number, profile: UpdateProfile): Promise<User | undefined>;
 
   // Journal entry methods
   getJournalEntries(userId: number): Promise<JournalEntry[]>;
@@ -83,9 +85,33 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { 
+      ...insertUser, 
+      id,
+      name: null,
+      dateOfBirth: null,
+      weight: null,
+      height: null,
+      family: null,
+      relationshipStatus: null,
+      ambition: null
+    };
     this.users.set(id, user);
     return user;
+  }
+
+  async updateUserProfile(id: number, profile: UpdateProfile): Promise<User | undefined> {
+    const user = this.users.get(id);
+    if (!user) {
+      return undefined;
+    }
+
+    const updatedUser: User = {
+      ...user,
+      ...profile,
+    };
+    this.users.set(id, updatedUser);
+    return updatedUser;
   }
 
   async getJournalEntries(userId: number): Promise<JournalEntry[]> {

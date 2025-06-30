@@ -10,6 +10,7 @@ export function Navigation() {
     { path: "/chat", label: "AI Companion", icon: "fas fa-comments" },
     { path: "/mood", label: "Mood Tracker", icon: "fas fa-heart" },
     { path: "/search", label: "Search Entries", icon: "fas fa-search" },
+    { path: "/profile", label: "Profile", icon: "fas fa-user" },
   ];
 
   return (

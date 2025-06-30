@@ -6,6 +6,13 @@ export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  name: text("name"),
+  dateOfBirth: text("date_of_birth"),
+  weight: text("weight"),
+  height: text("height"),
+  family: text("family"),
+  relationshipStatus: text("relationship_status"),
+  ambition: text("ambition"),
 });
 
 export const journalEntries = pgTable("journal_entries", {
@@ -41,6 +48,16 @@ export const insertUserSchema = createInsertSchema(users).pick({
   password: true,
 });
 
+export const updateProfileSchema = createInsertSchema(users).pick({
+  name: true,
+  dateOfBirth: true,
+  weight: true,
+  height: true,
+  family: true,
+  relationshipStatus: true,
+  ambition: true,
+});
+
 export const insertJournalEntrySchema = createInsertSchema(journalEntries).omit({
   id: true,
   userId: true,
@@ -61,6 +78,7 @@ export const insertChatMessageSchema = createInsertSchema(chatMessages).omit({
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
+export type UpdateProfile = z.infer<typeof updateProfileSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertJournalEntry = z.infer<typeof insertJournalEntrySchema>;
 export type JournalEntry = typeof journalEntries.$inferSelect;
