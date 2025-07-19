@@ -1,15 +1,25 @@
-import '../styles/globals.css'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import type { AppProps } from 'next/app'
+// pages/_app.tsx
 
-const queryClient = new QueryClient()
+import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import '@/styles/globals.css'; // adjust the path if needed
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
+  // Initialize React Query client once per app
+  const [queryClient] = useState(() => new QueryClient());
+
+  console.log("🛡️ _app.tsx loaded, wrapping with SessionProvider & QueryClientProvider");
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-    </QueryClientProvider>
-  )
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
+    </SessionProvider>
+  );
 }
-
-export default MyApp
