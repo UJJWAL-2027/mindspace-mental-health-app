@@ -1,3 +1,13 @@
+🛠️ IMPORTANT NOTE: While the main branch reflects the latest stable version of the project, all prior development, hard work, and detailed commit history can be found in the other branches:
+1)backup-before-upgrade
+2)backup-before-upgrade-2
+
+These branches preserve the complete evolution of the project and showcase the foundational effort behind this final build.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 MindSpace 🧠
 A full-stack mental wellness platform designed to be a personal space for users to track their mood, journal their thoughts, and receive AI-powered support. It provides a secure, intuitive, and real-time interface to help users on their mental health journey.
 
@@ -38,9 +48,6 @@ Backend & Database: Supabase (Auth, PostgreSQL)
 *The initial landing page for the application.*
 ![Starting_page](./assets/Starting_page.png)
 
-🔑 Signing In
-*The clean and simple sign-in page.*
-![Signing_in](./assets/Signing_in.png)
 
 🔒 Google Authentication
 *The secure Google authentication prompt.*
