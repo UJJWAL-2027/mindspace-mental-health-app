@@ -50,6 +50,7 @@ Backend & Database: Supabase (Auth, PostgreSQL)
 *The central hub for accessing all features after logging in.*
 ![Dashboard](./assets/Dashboard.png)
 
+
  ✍️ Journal Writing
 *A clean and private space for users to write journal entries.*
 ![Journal Writing](./assets/Journal_Writing.png)
