@@ -48,9 +48,6 @@ Backend & Database: Supabase (Auth, PostgreSQL)
 *The initial landing page for the application.*
 ![Starting_page](./assets/Starting_page.png)
 
-🔑 Signing In
-*The clean and simple sign-in page.*
-![Signing_in](./assets/Signing_in.png)
 
 🔒 Google Authentication
 *The secure Google authentication prompt.*
